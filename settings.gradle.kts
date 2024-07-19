@@ -19,6 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "ApiService"
+rootProject.name = "ApiCall"
 include(":ApiCall")
-include(":app")
