@@ -1,4 +1,4 @@
-package com.mostafatamer.apiservice
+package com.mostafatamer.apiCall
 
 import org.junit.Test
 
