@@ -21,19 +21,8 @@ The `Api` library is an abstract class designed to simplify handling API calls w
 ## Usage
 
 ### Basic Example
-
-1. **Create a subclass of `Api`**
-
-   ```java
-   public class MyApiCall extends Api<MyResponseType> {
-       @Override
-       protected void beginRequest() {
-           // Implement your API call here
-       }
-   }
-   ```
-
-2. **Configure the API call**
+ 
+**Configure the API call**
 
    ```java
    MyApiCall apiCall = new MyApiCall()
@@ -76,10 +65,6 @@ The `Api` library is an abstract class designed to simplify handling API calls w
 - **`OnFailure`**: Invoked when the API call fails.
 - **`OnEnd`**: Invoked when the API call ends.
 - **`OnBusy`**: Invoked when the API call is busy.
-
-## Contributing
-
-Contributions are welcome! Please submit a pull request or open an issue if you find any bugs or have feature requests.
 
 ## License
 
