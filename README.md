@@ -72,25 +72,7 @@ To use the `Api` library in your Android project, follow these steps:
        });
 
    apiCall.beginRequest(); // Start the API call
-   ```
-
-### Key Methods
-
-- **`setLoadingStateObserver(LoadingStateObserver observer)`**: Set an observer to be notified of loading state changes.
-- **`setOnStart(OnStart onStart)`**: Set a callback to be invoked when the API call starts.
-- **`setOnResponse(OnResponse<T> onResponse)`**: Set a callback to be invoked when the API call receives a response.
-- **`setOnFailure(OnFailure onFailure)`**: Set a callback to be invoked when the API call fails.
-- **`setOnEnd(OnEnd onEnd)`**: Set a callback to be invoked when the API call ends.
-- **`allowBlocking(OnBusy onBusy)`**: Enable blocking mode and set a callback for when the API call is busy.
-- **`unLockBlocking()`**: Unlock blocking mode to allow new API calls.
-
-## API Callbacks
-
-- **`OnStart`**: Invoked when the API call starts.
-- **`OnResponse<T>`**: Invoked when a response is received.
-- **`OnFailure`**: Invoked when the API call fails.
-- **`OnEnd`**: Invoked when the API call ends.
-- **`OnBusy`**: Invoked when the API call is busy.
+   ```
 
 ## License
 
