@@ -1,4 +1,4 @@
-﻿# ApiService
+﻿# Easy Retrofit
 
 Here's a README file for your `Api` library. It provides an overview of the library, installation instructions, and a brief guide on how to use it:
 
@@ -17,6 +17,30 @@ The `Api` library is an abstract class designed to simplify handling API calls w
 - **Loading State Management**: Track and respond to loading state changes.
 - **Blocking Mode**: Control whether concurrent API calls are allowed.
 - **Customizable Callbacks**: Set callbacks for start, response, failure, end, and busy states.
+
+## Installation
+
+To use the `Api` library in your Android project, follow these steps:
+
+1. **Add the required dependency** 
+
+   ```gradle
+   implementation("com.github.mostafa-tamer:EasyRetrofit:2.1.1") 
+   ```
+   
+2. **Add the following to settings.gradle file**
+
+   ```gradle
+   dependencyResolutionManagement {
+      repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+      repositories {
+          google()
+          mavenCentral()
+          maven("https://jitpack.io")
+  
+      }
+   }
+   ```
 
 ## Usage
 
