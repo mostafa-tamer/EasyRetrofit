@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "ApiCall"
+rootProject.name = "EasyRetrofit"
 include(":EasyRetrofit")
