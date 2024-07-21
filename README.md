@@ -2,7 +2,7 @@
 
 ## Overview
 
-The `Api` library is an abstract class designed to simplify handling API calls with Retrofit in Android. It provides a structured approach to manage API call states, including success, failure, and loading, with support for optional callbacks and blocking mode.
+`Easy Retrofit` designed to simplify handling API calls with Retrofit in Android. It provides a structured approach to manage API call states, including success, failure, and loading, with support for optional callbacks and blocking mode.
 
 ## Features
 
