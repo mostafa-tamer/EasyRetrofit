@@ -25,8 +25,8 @@ The `Api` library is an abstract class designed to simplify handling API calls w
 **Configure the API call**
 
    ```java
-   val retrofit = RetrofitClient.getInstance().retrofit
-   apiService = retrofit.create(ApiService::class.java)
+   Retrofit retrofit = RetrofitClient.getInstance();
+   ApiService apiService = retrofit.create(ApiService::class.java);
 
    MyApiCall apiCall = apiService.getDataFromTheServer()
        .setOnStart(() -> {
