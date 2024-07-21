@@ -25,7 +25,7 @@ The `Api` library is an abstract class designed to simplify handling API calls w
 **Configure the API call**
 
    ```java
-   ApiService Service {
+   interface ApiService {
        @GET("/data")
        Call<String> getDataFromTheServer();
    }
