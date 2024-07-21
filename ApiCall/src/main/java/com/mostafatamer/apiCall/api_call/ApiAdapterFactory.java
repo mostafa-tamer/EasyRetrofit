@@ -1,4 +1,4 @@
-package com.mostafatamer.apiCall;
+package com.mostafatamer.apiCall.api_call;
 
 import androidx.annotation.NonNull;
 
@@ -10,7 +10,7 @@ import retrofit2.Call;
 import retrofit2.CallAdapter;
 import retrofit2.Retrofit;
 
-public class ApiCallAdapterFactory extends CallAdapter.Factory {
+public class ApiAdapterFactory extends CallAdapter.Factory {
 
     @Override
     public CallAdapter<?, ?> get(@NonNull Type returnType, @NonNull Annotation[] annotations, @NonNull Retrofit retrofit) {

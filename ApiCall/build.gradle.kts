@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.mostafatamer.apiservice"
+    namespace = "com.mostafatamer.apicall"
     compileSdk = 34
 
     defaultConfig {
@@ -54,7 +54,7 @@ afterEvaluate {
 
                 groupId = "com.github.mostafa-tamer"
                 artifactId = "api-call"
-                version = "2.0.2"
+                version = "2.1.0"
             }
         }
     }

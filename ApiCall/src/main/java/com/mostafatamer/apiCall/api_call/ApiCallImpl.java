@@ -1,4 +1,4 @@
-package com.mostafatamer.apiCall;
+package com.mostafatamer.apiCall.api_call;
 
 import androidx.annotation.NonNull;
 
@@ -45,6 +45,12 @@ class ApiCallImpl<T> extends ApiCall<T> {
 
     @NonNull
     @Override
+    public Call<T> clone() {
+        return super.clone();
+    }
+
+    @NonNull
+    @Override
     public Request request() {
         return call.request();
     }
@@ -54,4 +60,5 @@ class ApiCallImpl<T> extends ApiCall<T> {
     public Timeout timeout() {
         return call.timeout();
     }
+
 }
