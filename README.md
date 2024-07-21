@@ -1,10 +1,4 @@
-﻿# Easy Retrofit
-
-Here's a README file for your `Api` library. It provides an overview of the library, installation instructions, and a brief guide on how to use it:
-
----
-
-# Api Library
+﻿# Easy Retrofit
 
 ## Overview
 
