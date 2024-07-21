@@ -20,5 +20,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "ApiCall"
-include(":ApiCall")
-include(":lib")
+include(":EasyRetrofit")
