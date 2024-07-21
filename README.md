@@ -18,26 +18,6 @@ The `Api` library is an abstract class designed to simplify handling API calls w
 - **Blocking Mode**: Control whether concurrent API calls are allowed.
 - **Customizable Callbacks**: Set callbacks for start, response, failure, end, and busy states.
 
-## Installation
-
-To use the `Api` library in your Android project, follow these steps:
-
-1. **Clone the Repository**
-
-   ```bash
-   git clone https://github.com/yourusername/your-repo.git
-   ```
-
-2. **Add to Your Project**
-
-   - Copy the `Api` class into your project's source directory.
-   - Ensure Retrofit and other required dependencies are included in your `build.gradle` file:
-
-     ```gradle
-     implementation 'com.squareup.retrofit2:retrofit:2.x.x'
-     implementation 'com.squareup.retrofit2:converter-gson:2.x.x'
-     ```
-
 ## Usage
 
 ### Basic Example
