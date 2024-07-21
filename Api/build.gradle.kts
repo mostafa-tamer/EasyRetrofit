@@ -54,7 +54,7 @@ afterEvaluate {
 
                 groupId = "com.github.mostafa-tamer"
                 artifactId = "api-call"
-                version = "2.1.0"
+                version = "2.1.1"
             }
         }
     }

@@ -170,7 +170,7 @@ public abstract class Api<T> {
         }
     }
 
-    protected abstract void beginRequest();
+    public abstract void beginRequest();
 
     private void invokeFailureCallback(@NonNull Throwable t) {
         if (onFailure != null) {

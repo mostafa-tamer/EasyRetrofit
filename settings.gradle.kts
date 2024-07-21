@@ -20,4 +20,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "EasyRetrofit"
-include(":EasyRetrofit")
+include(":Api")
