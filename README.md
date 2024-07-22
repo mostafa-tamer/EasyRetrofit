@@ -1,4 +1,5 @@
-﻿# Easy Retrofit
+﻿# Easy Retrofit
+
 
 ## Overview
 
@@ -47,7 +48,14 @@ To use the `Api` library in your Android project, follow these steps:
        @GET("/data")
        Call<String> getDataFromTheServer();
    }
- 
+
+   Retrofit retrofit = new Retrofit.Builder()
+        .baseUrl(BASE_URL)
+        .addConverterFactory(GsonConverterFactory.create())
+        .addCallAdapterFactory(new ApiAdapterFactory())   //add this adapter factory
+        .client(client)
+        .build();
+
    Retrofit retrofit = RetrofitClient.getInstance();
    ApiService apiService = retrofit.create(ApiService::class.java);
 
@@ -72,7 +80,8 @@ To use the `Api` library in your Android project, follow these steps:
        });
 
    apiCall.beginRequest(); // Start the API call
-   ```
+   ```
+
 
 ## License
 
