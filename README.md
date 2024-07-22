@@ -40,47 +40,59 @@ To use the `Api` library in your Android project, follow these steps:
 ## Usage
 
 ### Basic Example
- 
-**Configure the API call**
 
-   ```java
-   interface ApiService {
-       @GET("/data")
-       Call<String> getDataFromTheServer();
-   }
+**Define the API Service Interface**
 
-   Retrofit retrofit = new Retrofit.Builder()
-        .baseUrl(BASE_URL)
-        .addConverterFactory(GsonConverterFactory.create())
-        .addCallAdapterFactory(new ApiAdapterFactory())   //add this adapter factory
-        .client(client)
-        .build();
+```java
+interface ApiService {
+    @GET("/data")
+    Call<String> getDataFromTheServer();
+}
+```
 
-   Retrofit retrofit = RetrofitClient.getInstance();
-   ApiService apiService = retrofit.create(ApiService::class.java);
+**Configure Retrofit with the necessary factory**
 
-   MyApiCall apiCall = apiService.getDataFromTheServer()
-       .setOnStart(() -> {
-           // Show loading indicator
-       })
-       .setOnResponse((response, statusCode) -> {
-           // Handle the API response
-       })
-       .setOnFailure(throwable -> {
-           // Handle API call failure
-       })
-       .setOnEnd(() -> {
-           // Hide loading indicator
-       })
-       .setLoadingStateObserver(isLoading -> {
-           // Respond to loading state changes
-       })
-       .allowBlocking(() -> {
-           // Handle busy state when blocking mode is enabled
-       });
+```java
+Retrofit retrofit = new Retrofit.Builder()
+     .baseUrl(BASE_URL)
+     .addConverterFactory(GsonConverterFactory.create())
+     .addCallAdapterFactory(new ApiAdapterFactory())   // Add this adapter factory
+     .client(client)
+     .build();
+```
 
-   apiCall.beginRequest(); // Start the API call
-   ```
+**Create the API Service Instance**
+
+```java
+Retrofit retrofit = RetrofitClient.getInstance();
+ApiService apiService = retrofit.create(ApiService.class);
+```
+
+**Set Up and Make the API Call**
+
+```java
+MyApiCall apiCall = apiService.getDataFromTheServer()
+    .setOnStart(() -> {
+        // Show loading indicator
+    })
+    .setOnResponse((response, statusCode) -> {
+        // Handle the API response
+    })
+    .setOnFailure(throwable -> {
+        // Handle API call failure
+    })
+    .setOnEnd(() -> {
+        // Hide loading indicator
+    })
+    .setLoadingStateObserver(isLoading -> {
+        // Respond to loading state changes
+    })
+    .allowBlocking(() -> {
+        // Handle busy state when blocking mode is enabled
+    });
+
+apiCall.beginRequest(); // Start the API call
+```
 
 
 ## License
