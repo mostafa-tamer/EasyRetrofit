@@ -71,7 +71,7 @@ ApiService apiService = retrofit.create(ApiService.class);
 **Set Up and Make the API Call**
 
 ```java
-MyApiCall apiCall = apiService.getDataFromTheServer()
+ApiCall apiCall = apiService.getDataFromTheServer()
     .setOnStart(() -> {
         // Show loading indicator
     })
