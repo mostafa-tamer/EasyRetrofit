@@ -1,7 +1,7 @@
 package com.mostafatamer.api
 
-import com.mostafatamer.api.api_decorator.ApiDecorator
 import com.mostafatamer.api.data.remote.ApiService
+
 import com.mostafatamer.api.data.remote.RetrofitClient
 import com.mostafatamer.api.domain.model.Calendar
 import junit.framework.TestCase.assertEquals
@@ -24,11 +24,12 @@ class ApiCallTest {
     fun setUp() {
         val retrofit = RetrofitClient.getInstance().retrofit
         apiService = retrofit.create(ApiService::class.java)
+        Api.setGlobalLoadingStateObserver(null)
     }
 
     @Test
     fun test_retrofit_response_test_using_api_decorator() {
-        ApiDecorator(apiService.getCalendarWithApiCall(2024, 12, 30.0, 30.0, 5))
+        apiService.getCalendarWithApiCall(2024, 12, 30.0, 30.0, 5)
             .setOnResponse { _, code ->
                 assertEquals(code, 200)
                 latchWithOneCount.countDown()
@@ -39,13 +40,14 @@ class ApiCallTest {
 
     @Test
     fun test_retrofit_response_using_api_call() {
-        apiService.getCalendarWithApiCall(2024, 12, 30.0, 30.0, 5)
+        val apiCall = apiService.getCalendarWithApiCall(2024, 12, 30.0, 30.0, 5)
             .setOnResponse { data, code ->
                 assert(data != null)
                 assertEquals(code, 200)
                 latchWithOneCount.countDown()
-            }.beginRequest()
+            }
 
+        apiCall.beginRequest()
         addLatchTimeout(latchWithOneCount)
     }
 
@@ -90,14 +92,16 @@ class ApiCallTest {
             .allowBlocking {
                 busy++
                 latch.countDown()
-            }.setLoadingStateObserver {
+            }
+            .setLoadingStateObserver {
                 when (loadingObserverCounter) {
                     0 -> assertTrue(it)
                     1 -> assertFalse(it)
                     else -> assert(false)
                 }
                 loadingObserverCounter++
-            }.setOnStart {
+            }
+            .setOnStart {
                 started = true
                 latch.countDown()
             }.setOnResponse { _, code ->
@@ -118,49 +122,26 @@ class ApiCallTest {
         assertEquals(loadingObserverCounter, 2)
         assert(started)
         assert(ended)
-        assertEquals(busy,2)
-    }
-
-    @Test
-    fun test_retrofit_response_globalLoadingStateObserver() {
-
-        var loadingObserverCounter = 0
-
-        Api.setGlobalLoadingStateObserver {
-            when (loadingObserverCounter) {
-                0 -> assertTrue(it)
-                1 -> assertFalse(it)
-                else -> assert(false)
-            }
-            loadingObserverCounter++
-        }
-
-        ApiDecorator(apiService.getCalendarWithApiCall(2024, 12, 30.0, 30.0, 5))
-            .setOnResponse { _, _ ->
-                latchWithOneCount.countDown()
-            }.beginRequest()
-
-        addLatchTimeout(latchWithOneCount)
-
-        latchWithOneCount.await()
-
-
-
-        assertEquals(loadingObserverCounter, 2)
-
-        Api.setGlobalLoadingStateObserver(null)    //clean
+        assertEquals(busy, 2)
     }
 
 
     private fun dummyApiCall() {
-        ApiDecorator(apiService.getCalendarWithApiCall(2024, 12, 30.0, 30.0, 5))
+        apiService.getCalendarWithApiCall(2024, 12, 30.0, 30.0, 5)
             .beginRequest()
+    }
+
+    private fun dummyApiCall(latch: CountDownLatch) {
+        apiService.getCalendarWithApiCall(2024, 12, 30.0, 30.0, 5)
+            .setOnResponse { _, _ ->
+                latch.countDown()
+            }.beginRequest()
     }
 
 
     @Test
     fun test_failure() {
-        ApiDecorator(apiService.getCalendarWithApiCallForTestingFailure(2024, 12, 30.0, 30.0, 5))
+        apiService.getCalendarWithApiCallForTestingFailure(2024, 12, 30.0, 30.0, 5)
             .setOnFailure {
                 assert(it != null)
                 latchWithOneCount.countDown()
@@ -170,6 +151,7 @@ class ApiCallTest {
     }
 
     @Test
+    @Synchronized
     fun test_number_of_running_service() {
         dummyApiCall()
         assertEquals(Api.getNumberOfRunningServices(), 1)

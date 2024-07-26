@@ -30,7 +30,7 @@ public abstract class Api<T> {
     private boolean loading;
 
     private static boolean blocking;
-    private static boolean staticLoading;
+    private static boolean loadingGlobally;
     private static int numberOfRunningServices;
 
     private OnResponse<T> onResponse;
@@ -38,7 +38,6 @@ public abstract class Api<T> {
     private OnStart onStart;
     private OnEnd onEnd;
     private LoadingStateObserver loadingStateObserver;
-
     private static OnBusy onBusy;
     private static LoadingStateObserver globalLoadingStateObserver;
 
@@ -53,6 +52,17 @@ public abstract class Api<T> {
     public Api<T> setLoadingStateObserver(LoadingStateObserver loadingStateObserver) {
         this.loadingStateObserver = loadingStateObserver;
         return this;
+    }
+
+    /**
+     * Sets a global loading state observer for all API calls.
+     * This observer will be notified whenever the loading state changes for any instance of the API class,
+     * allowing centralized handling of loading states.
+     *
+     * @param globalLoadingStateObserver the global observer to be notified of loading state changes
+     */
+    public static void setGlobalLoadingStateObserver(LoadingStateObserver globalLoadingStateObserver) {
+        Api.globalLoadingStateObserver = globalLoadingStateObserver;
     }
 
     /**
@@ -123,17 +133,6 @@ public abstract class Api<T> {
     }
 
     /**
-     * Sets a global loading state observer for all API calls.
-     * This observer will be notified whenever the loading state changes for any instance of the API class,
-     * allowing centralized handling of loading states.
-     *
-     * @param globalLoadingStateObserver the global observer to be notified of loading state changes
-     */
-    public static void setGlobalLoadingStateObserver(LoadingStateObserver globalLoadingStateObserver) {
-        Api.globalLoadingStateObserver = globalLoadingStateObserver;
-    }
-
-    /**
      * @return true if the API call is loading, false otherwise
      */
     public boolean isLoading() {
@@ -162,7 +161,7 @@ public abstract class Api<T> {
     }
 
     protected void beginRequest(Call<T> call) {
-        if (blocking && staticLoading) {
+        if (blocking && loadingGlobally) {
             invokeBusyCallback();
         } else {
             start();
@@ -198,7 +197,7 @@ public abstract class Api<T> {
 
     private void changeLoadingState(boolean isLoading) {
         this.loading = isLoading;
-        Api.staticLoading = isLoading;
+        Api.loadingGlobally = isLoading;
 
         if (loadingStateObserver != null) {
             loadingStateObserver.invoke(isLoading);
@@ -227,7 +226,6 @@ public abstract class Api<T> {
             onResponse.invoke(response.body(), response.code());
         }
     }
-
 
     /**
      * Interface for observing the loading state of the API call.

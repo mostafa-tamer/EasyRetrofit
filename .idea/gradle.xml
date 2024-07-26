@@ -9,7 +9,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/EasyRetrofit" />
+            <option value="$PROJECT_DIR$/Api" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />
