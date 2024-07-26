@@ -33,8 +33,7 @@ To use the `Api` library in your Android project, follow these steps:
       repositories {
           google()
           mavenCentral()
-          maven("https://jitpack.io")
-  
+          maven("https://jitpack.io")   // add JitPack
       }
    }
    ```
