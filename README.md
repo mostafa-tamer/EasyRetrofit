@@ -47,7 +47,7 @@ To use the `Api` library in your Android project, follow these steps:
 ```kotlin
 interface ApiService {
     @GET("/data")
-    suspend fun getDataFromTheServer(): String
+    fun getDataFromTheServer(): Call<String>
 }
 ```
 
@@ -74,20 +74,15 @@ val apiService = retrofit.create(ApiService::class.java)
 val apiCall = apiService.getDataFromTheServer()
     .onStart {
         // Show loading indicator
-    }
-    .onResponse { response, statusCode ->
+    }.onResponse { response, statusCode ->
         // Handle the API response
-    }
-    .onFailure { throwable ->
+    }.onFailure { throwable ->
         // Handle API call failure
-    }
-    .onEnd {
+    }.onEnd {
         // Hide loading indicator
-    }
-    .setLoadingStateObserver { isLoading ->
+    }.setLoadingStateObserver { isLoading ->
         // Respond to loading state changes
-    }
-    .allowBlocking {
+    }.allowBlocking {
         // Handle busy state when blocking mode is enabled
     }
 
