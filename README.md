@@ -59,7 +59,6 @@ Retrofit retrofit = new Retrofit.Builder()
      .baseUrl(BASE_URL)
      .addConverterFactory(GsonConverterFactory.create())
      .addCallAdapterFactory(new ApiAdapterFactory())   // Add this adapter factory
-     .client(client)
      .build();
 ```
 
