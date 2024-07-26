@@ -72,19 +72,19 @@ val apiService = retrofit.create(ApiService::class.java)
 
 ```kotlin
 val apiCall = apiService.getDataFromTheServer()
-    .onStart {
-        // Show loading indicator
-    }.onResponse { response, statusCode ->
-        // Handle the API response
-    }.onFailure { throwable ->
-        // Handle API call failure
-    }.onEnd {
-        // Hide loading indicator
-    }.setLoadingStateObserver { isLoading ->
-        // Respond to loading state changes
-    }.allowBlocking {
-        // Handle busy state when blocking mode is enabled
-    }
+   .setOnStart {
+       // Show loading indicator
+   }.setOnResponse { response, statusCode ->
+       // Handle the API response
+   }.setOnFailure { throwable ->
+       // Handle API call failure
+   }.setOnEnd {
+       // Hide loading indicator
+   }.setLoadingStateObserver { isLoading ->
+       // Respond to loading state changes
+   }.allowBlocking {
+       // Handle busy state when blocking mode is enabled
+   }
 
 apiCall.beginRequest() // Start the API call
 ```
