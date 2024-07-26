@@ -20,7 +20,9 @@ To use the `Api` library in your Android project, follow these steps:
 1. **Add the required dependency** 
 
    ```gradle
-   implementation("com.github.mostafa-tamer:EasyRetrofit:2.1.1") 
+   implementation("com.github.mostafa-tamer:EasyRetrofit:2.1.1")
+   implementation("com.squareup.retrofit2:retrofit:2.9.0")
+   implementation("com.squareup.retrofit2:converter-gson:2.9.0")
    ```
    
 2. **Add the following to settings.gradle file**
