@@ -61,27 +61,22 @@ val retrofit = Retrofit.Builder()
     .build()
 ```
 
-**Create the API Service Instance**
-
-```kotlin
-val retrofit = RetrofitClient.getInstance()
-val apiService = retrofit.create(ApiService::class.java)
-```
-
 **Set Up and Make the API Call**
 
 ```kotlin
+val apiService = retrofit.create(ApiService::class.java)
+
 val apiCall = apiService.getDataFromTheServer()
    .setOnStart {
-       // Show loading indicator
+       // Code to run on sending the request
    }.setOnResponse { response, statusCode ->
        // Handle the API response
    }.setOnFailure { throwable ->
        // Handle API call failure
    }.setOnEnd {
-       // Hide loading indicator
+       // Code to run on ending the request
    }.setLoadingStateObserver { isLoading ->
-       // Respond to loading state changes
+       // Show and hide loading indicator
    }.allowBlocking {
        // Handle busy state when blocking mode is enabled
    }
